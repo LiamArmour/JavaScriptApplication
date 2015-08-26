@@ -9145,7 +9145,7 @@ $.widget( "mobile.slider", $.mobile.slider, {
 		if ( o.popupEnabled ) {
 			// remove the title attribute from the handle (which is
 			// responsible for the annoying tooltip); NB we have
-			// to do it here as the jqm slider sets it every time
+			// to do it here as the jQuery slider sets it every time
 			// the slider's value changes :(
 			this.handle.removeAttr( "title" );
 		}

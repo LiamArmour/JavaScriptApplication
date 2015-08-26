@@ -110,7 +110,7 @@
 			_create:function(){
 				var self = this,
 					bodyid = "ui-page-top",
-					panel = "<div data-role='panel' class='jqm-nav-panel jqm-quicklink-panel' data-position='right' data-display='overlay' data-theme='a'><ul data-role='listview' data-inset='false' data-theme='a' data-divider-theme='a' data-icon='false' class='jqm-list'><li data-role='list-divider'>Quick Links</li></ul></div>",
+					panel = "<div data-role='panel' class='jQuery-nav-panel jQuery-quicklink-panel' data-position='right' data-display='overlay' data-theme='a'><ul data-role='listview' data-inset='false' data-theme='a' data-divider-theme='a' data-icon='false' class='jQuery-list'><li data-role='list-divider'>Quick Links</li></ul></div>",
 					first = true,
 					h2dictionary = new Object();
 					if(typeof $("body").attr("id") === "undefined"){
@@ -118,7 +118,7 @@
 					} else {
 						bodyid =  $("body").attr("id");
 					}
-					this.element.find("div.jqm-content>h2").each(function(){
+					this.element.find("div.jQuery-content>h2").each(function(){
 						var id, text = $(this).text();
 
 						if(typeof $(this).attr("id") === "undefined"){
@@ -130,32 +130,32 @@
 
 						h2dictionary[id] =  text;
 						if(!first){
-							$(this).before( "<a href='#" + bodyid + "' class='jqm-deeplink ui-icon-carat-u ui-alt-icon'>Top</a>");
+							$(this).before( "<a href='#" + bodyid + "' class='jQuery-deeplink ui-icon-carat-u ui-alt-icon'>Top</a>");
 						} else {
-							$(this).before("<a href='#' data-ajax='false' class='jqm-deeplink jqm-open-quicklink-panel ui-icon-carat-l ui-alt-icon'>Quick Links</a>");
+							$(this).before("<a href='#' data-ajax='false' class='jQuery-deeplink jQuery-open-quicklink-panel ui-icon-carat-l ui-alt-icon'>Quick Links</a>");
 						}
 						first = false;
 					});
-					this._on(".jqm-open-quicklink-panel", {
+					this._on(".jQuery-open-quicklink-panel", {
 						"click": function(){
-							$(".ui-page-active .jqm-quicklink-panel").panel("open");
+							$(".ui-page-active .jQuery-quicklink-panel").panel("open");
 							return false;
 						}
 					});
 					this._on( document, {
 						"pagebeforechange": function(){
-							this.element.find(".jqm-quicklink-panel").panel("close");
-							this.element.find(".jqm-quicklink-panel .ui-btn-active").removeClass("ui-btn-active");
+							this.element.find(".jQuery-quicklink-panel").panel("close");
+							this.element.find(".jQuery-quicklink-panel .ui-btn-active").removeClass("ui-btn-active");
 						}
 					});
 					if( $(h2dictionary).length > 0 ){
 						this.element.prepend(panel)
-						this.element.find(".jqm-quicklink-panel").panel().find("ul").listview();
+						this.element.find(".jQuery-quicklink-panel").panel().find("ul").listview();
 					}
 					$.each(h2dictionary,function(id,text){
-						self.element.find(".jqm-quicklink-panel ul").append("<li><a href='#"+id+"'>"+text+"</a></li>");
+						self.element.find(".jQuery-quicklink-panel ul").append("<li><a href='#"+id+"'>"+text+"</a></li>");
 					});
-					self.element.find(".jqm-quicklink-panel ul").listview("refresh");
+					self.element.find(".jQuery-quicklink-panel ul").listview("refresh");
 
 			}
 		});

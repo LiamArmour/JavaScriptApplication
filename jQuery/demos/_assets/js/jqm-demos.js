@@ -29,7 +29,7 @@ if ( location.protocol.substr(0,4)  === 'file' ||
 			$.mobile.ajaxEnabled = false;
 
 			var message = $( '<div>' , {
-				'class': "jqm-content",
+				'class': "jQuery-content",
 				style: "border:none; padding: 10px 15px; overflow: auto;",
 				'data-ajax-warning': true
 			});
@@ -45,19 +45,19 @@ if ( location.protocol.substr(0,4)  === 'file' ||
 	});
 }
 
-$( document ).on( "pagecreate", ".jqm-demos", function( event ) {
+$( document ).on( "pagecreate", ".jQuery-demos", function( event ) {
 	var search,
 		page = $( this ),
 		that = this,
 		searchUrl = ( $( this ).hasClass( "jqm-home" ) ) ? "_search/" : "../_search/",
-		searchContents = $( ".jqm-search ul.jqm-list" ).find( "li:not(.ui-collapsible)" ),
+		searchContents = $( ".jQuery-search ul.jQuery-list" ).find( "li:not(.ui-collapsible)" ),
 		version = $.mobile.version || "dev",
 		words = version.split( "-" ),
 		ver = words[0],
 		str = words[1] || "",
 		text = ver;
 
-	// Insert jqm version in header
+	// Insert jQuery version in header
 	if ( str.indexOf( "rc" ) == -1 ) {
 		str = str.charAt( 0 ).toUpperCase() + str.slice( 1 );
 	} else {
@@ -68,29 +68,29 @@ $( document ).on( "pagecreate", ".jqm-demos", function( event ) {
 		text += " " + str;
 	}
 
-	$( ".jqm-version" ).html( text );
+	$( ".jQuery-version" ).html( text );
 
 	// Global navmenu panel
-	$( ".jqm-navmenu-panel ul" ).listview();
+	$( ".jQuery-navmenu-panel ul" ).listview();
 
-	$( document ).on( "panelopen", ".jqm-search-panel", function() {
+	$( document ).on( "panelopen", ".jQuery-search-panel", function() {
 		$( this ).find( "input" ).focus();
 	})
 
 	$( ".jqm-navmenu-link" ).on( "click", function() {
-		page.find( ".jqm-navmenu-panel:not(.jqm-panel-page-nav)" ).panel( "open" );
+		page.find( ".jQuery-navmenu-panel:not(.jQuery-panel-page-nav)" ).panel( "open" );
 	});
 
 	// Turn off autocomplete / correct for demos search
-	$( this ).find( ".jqm-search input" ).attr( "autocomplete", "off" ).attr( "autocorrect", "off" );
+	$( this ).find( ".jQuery-search input" ).attr( "autocomplete", "off" ).attr( "autocorrect", "off" );
 
 	// Global search
 	$( ".jqm-search-link" ).on( "click", function() {
-		page.find( ".jqm-search-panel" ).panel( "open" );
+		page.find( ".jQuery-search-panel" ).panel( "open" );
 	});
 
 	// Initalize search panel list and filter also remove collapsibles
-	$( this ).find( ".jqm-search ul.jqm-list" ).html( searchContents ).listview({
+	$( this ).find( ".jQuery-search ul.jQuery-list" ).html( searchContents ).listview({
 		inset: false,
 		theme: null,
 		dividerTheme: null,
@@ -106,7 +106,7 @@ $( document ).on( "pagecreate", ".jqm-demos", function( event ) {
 	}).filterable();
 
 	// Initalize search page list and remove collapsibles
-	$( this ).find( ".jqm-search-results-wrap ul.jqm-list" ).html( searchContents ).listview({
+	$( this ).find( ".jQuery-search-results-wrap ul.jQuery-list" ).html( searchContents ).listview({
 		inset: true,
 		theme: null,
 		dividerTheme: null,
@@ -124,24 +124,24 @@ $( document ).on( "pagecreate", ".jqm-demos", function( event ) {
 	}
 
 	// Search results page get search query string and enter it into filter then trigger keyup to filter
-	if ( $( event.target ).hasClass( "jqm-demos-search-results") ) {
+	if ( $( event.target ).hasClass( "jQuery-demos-search-results") ) {
 		search = $.mobile.path.parseUrl( window.location.href ).search.split( "=" )[ 1 ];
 		setTimeout(function() {
 			e = $.Event( "keyup" );
 			e.which = 65;
-			$( that ).find( ".jqm-content .jqm-search-results-wrap input" ).val( search ).trigger(e).trigger( "change" );
+			$( that ).find( ".jQuery-content .jQuery-search-results-wrap input" ).val( search ).trigger(e).trigger( "change" );
 		}, 0 );
 	}
 });
 
 // Append keywords list to each list item
-$( document ).one( "pagecreate", ".jqm-demos", function( event ) {
-	$( this ).find( ".jqm-search-results-list li, .jqm-search li" ).each(function() {
+$( document ).one( "pagecreate", ".jQuery-demos", function( event ) {
+	$( this ).find( ".jQuery-search-results-list li, .jQuery-search li" ).each(function() {
 		var text = $( this ).attr( "data-filtertext" );
 
 		$( this )
 			.find( "a" )
-			.append( "<span class='jqm-search-results-keywords ui-li-desc'>" + text + "</span>" );
+			.append( "<span class='jQuery-search-results-keywords ui-li-desc'>" + text + "</span>" );
 	});
 });
 
@@ -153,7 +153,7 @@ jQuery.fn.highlight = function( pat ) {
 			var pos = node.data.toUpperCase().indexOf( pat );
 			if ( pos >= 0 ) {
 				var spannode = document.createElement( "span" );
-				spannode.className = "jqm-search-results-highlight";
+				spannode.className = "jQuery-search-results-highlight";
 				var middlebit = node.splitText( pos );
 				var endbit = middlebit.splitText( pat.length );
 				var middleclone = middlebit.cloneNode( true );
@@ -175,7 +175,7 @@ jQuery.fn.highlight = function( pat ) {
 
 // Function to remove highlights in text
 jQuery.fn.removeHighlight = function() {
-	return this.find( "span.jqm-search-results-highlight" ).each(function() {
+	return this.find( "span.jQuery-search-results-highlight" ).each(function() {
 		this.parentNode.firstChild.nodeName;
 		with ( this.parentNode ) {
 			replaceChild( this.firstChild, this );

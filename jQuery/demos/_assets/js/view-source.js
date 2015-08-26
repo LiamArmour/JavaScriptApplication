@@ -85,7 +85,7 @@ $( document ).bind( "pagebeforechange", function( e, data ) {
 	if ( data.options && data.options.role === "popup" && data.options.link ) {
 		sources = data.options.link.jqmData( "sources" );
 		if ( sources ) {
-			popup = $( "<div id='jqm-view-source' class='jqm-view-source' data-role='popup' data-theme='none' data-position-to='window'>" +
+			popup = $( "<div id='jQuery-view-source' class='jQuery-view-source' data-role='popup' data-theme='none' data-position-to='window'>" +
 								"<div data-role='collapsibleset' data-inset='true'></div>" +
 							"</div>" );
 
@@ -108,7 +108,7 @@ function makeButton() {
 		a = document.createElement( "a" ),
 		txt = document.createTextNode( "View Source" );
 
-	a.className = "jqm-view-source-link ui-btn ui-corner-all ui-btn-inline ui-mini";
+	a.className = "jQuery-view-source-link ui-btn ui-corner-all ui-btn-inline ui-mini";
 
 	a.setAttribute( "href", "#popupDemo" );
 	a.setAttribute( "data-rel", "popup" );
@@ -176,7 +176,7 @@ $( document ).on( "pagebeforecreate", "[data-role='page']", function() {
 
 $( document ).on( "pagecreate", function( e ) {
 	// prevent page scroll while scrolling source code
-	$( document ).on( "mousewheel", ".jqm-view-source .ui-collapsible-content", function( event, delta ) {
+	$( document ).on( "mousewheel", ".jQuery-view-source .ui-collapsible-content", function( event, delta ) {
 		if ( delta > 0 && $( this ).scrollTop() === 0 ) {
 			event.preventDefault();
 		} else if ( delta < 0 &&  $( this ).scrollTop() === $( this ).get( 0 ).scrollHeight - $( this ).innerHeight() ) {
@@ -185,11 +185,11 @@ $( document ).on( "pagecreate", function( e ) {
 	});
 
 	// reposition when switching between html / js / css
-	$( e.target ).delegate( ".jqm-view-source .ui-collapsible", "expand", function() {
+	$( e.target ).delegate( ".jQuery-view-source .ui-collapsible", "expand", function() {
 		$( this ).parents( ":mobile-popup" ).popup( "reposition", { positionTo: "window" } );
 	});
 
-	$( e.target ).delegate( ".jqm-view-source", "popupbeforeposition", function() {
+	$( e.target ).delegate( ".jQuery-view-source", "popupbeforeposition", function() {
 		// max height: screen height - tolerance (2*30px) - 42px for each collapsible heading
 		var x = $( this ).find( ".ui-collapsible" ).length,
 			maxHeight = $.mobile.getScreenHeight() - 60 - ( x * 42 );

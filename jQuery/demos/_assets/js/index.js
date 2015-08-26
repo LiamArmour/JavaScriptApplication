@@ -110,7 +110,7 @@
 			_create:function(){
 				var self = this,
 					bodyid = "ui-page-top",
-					panel = "<div data-role='panel' class='jqm-nav-panel jqm-quicklink-panel' data-position='right' data-display='overlay' data-theme='a'><ul data-role='listview' data-inset='false' data-theme='a' data-divider-theme='a' data-icon='false' class='jqm-list'><li data-role='list-divider'>Quick Links</li></ul></div>",
+					panel = "<div data-role='panel' class='jQuery-nav-panel jQuery-quicklink-panel' data-position='right' data-display='overlay' data-theme='a'><ul data-role='listview' data-inset='false' data-theme='a' data-divider-theme='a' data-icon='false' class='jQuery-list'><li data-role='list-divider'>Quick Links</li></ul></div>",
 					first = true,
 					h2dictionary = new Object();
 					if(typeof $("body").attr("id") === "undefined"){
@@ -118,7 +118,7 @@
 					} else {
 						bodyid =  $("body").attr("id");
 					}
-					this.element.find("div.jqm-content>h2").each(function(){
+					this.element.find("div.jQuery-content>h2").each(function(){
 						var id, text = $(this).text();
 
 						if(typeof $(this).attr("id") === "undefined"){
@@ -130,32 +130,32 @@
 
 						h2dictionary[id] =  text;
 						if(!first){
-							$(this).before( "<a href='#" + bodyid + "' class='jqm-deeplink ui-icon-carat-u ui-alt-icon'>Top</a>");
+							$(this).before( "<a href='#" + bodyid + "' class='jQuery-deeplink ui-icon-carat-u ui-alt-icon'>Top</a>");
 						} else {
-							$(this).before("<a href='#' data-ajax='false' class='jqm-deeplink jqm-open-quicklink-panel ui-icon-carat-l ui-alt-icon'>Quick Links</a>");
+							$(this).before("<a href='#' data-ajax='false' class='jQuery-deeplink jQuery-open-quicklink-panel ui-icon-carat-l ui-alt-icon'>Quick Links</a>");
 						}
 						first = false;
 					});
-					this._on(".jqm-open-quicklink-panel", {
+					this._on(".jQuery-open-quicklink-panel", {
 						"click": function(){
-							$(".ui-page-active .jqm-quicklink-panel").panel("open");
+							$(".ui-page-active .jQuery-quicklink-panel").panel("open");
 							return false;
 						}
 					});
 					this._on( document, {
 						"pagebeforechange": function(){
-							this.element.find(".jqm-quicklink-panel").panel("close");
-							this.element.find(".jqm-quicklink-panel .ui-btn-active").removeClass("ui-btn-active");
+							this.element.find(".jQuery-quicklink-panel").panel("close");
+							this.element.find(".jQuery-quicklink-panel .ui-btn-active").removeClass("ui-btn-active");
 						}
 					});
 					if( $(h2dictionary).length > 0 ){
 						this.element.prepend(panel)
-						this.element.find(".jqm-quicklink-panel").panel().find("ul").listview();
+						this.element.find(".jQuery-quicklink-panel").panel().find("ul").listview();
 					}
 					$.each(h2dictionary,function(id,text){
-						self.element.find(".jqm-quicklink-panel ul").append("<li><a href='#"+id+"'>"+text+"</a></li>");
+						self.element.find(".jQuery-quicklink-panel ul").append("<li><a href='#"+id+"'>"+text+"</a></li>");
 					});
-					self.element.find(".jqm-quicklink-panel ul").listview("refresh");
+					self.element.find(".jQuery-quicklink-panel ul").listview("refresh");
 
 			}
 		});
@@ -199,7 +199,7 @@ if ( location.protocol.substr(0,4)  === 'file' ||
 			$.mobile.ajaxEnabled = false;
 
 			var message = $( '<div>' , {
-				'class': "jqm-content",
+				'class': "jQuery-content",
 				style: "border:none; padding: 10px 15px; overflow: auto;",
 				'data-ajax-warning': true
 			});
@@ -215,19 +215,19 @@ if ( location.protocol.substr(0,4)  === 'file' ||
 	});
 }
 
-$( document ).on( "pagecreate", ".jqm-demos", function( event ) {
+$( document ).on( "pagecreate", ".jQuery-demos", function( event ) {
 	var search,
 		page = $( this ),
 		that = this,
 		searchUrl = ( $( this ).hasClass( "jqm-home" ) ) ? "_search/" : "../_search/",
-		searchContents = $( ".jqm-search ul.jqm-list" ).find( "li:not(.ui-collapsible)" ),
+		searchContents = $( ".jQuery-search ul.jQuery-list" ).find( "li:not(.ui-collapsible)" ),
 		version = $.mobile.version || "dev",
 		words = version.split( "-" ),
 		ver = words[0],
 		str = words[1] || "",
 		text = ver;
 
-	// Insert jqm version in header
+	// Insert jQuery version in header
 	if ( str.indexOf( "rc" ) == -1 ) {
 		str = str.charAt( 0 ).toUpperCase() + str.slice( 1 );
 	} else {
@@ -238,29 +238,29 @@ $( document ).on( "pagecreate", ".jqm-demos", function( event ) {
 		text += " " + str;
 	}
 
-	$( ".jqm-version" ).html( text );
+	$( ".jQuery-version" ).html( text );
 
 	// Global navmenu panel
-	$( ".jqm-navmenu-panel ul" ).listview();
+	$( ".jQuery-navmenu-panel ul" ).listview();
 
-	$( document ).on( "panelopen", ".jqm-search-panel", function() {
+	$( document ).on( "panelopen", ".jQuery-search-panel", function() {
 		$( this ).find( "input" ).focus();
 	})
 
 	$( ".jqm-navmenu-link" ).on( "click", function() {
-		page.find( ".jqm-navmenu-panel:not(.jqm-panel-page-nav)" ).panel( "open" );
+		page.find( ".jQuery-navmenu-panel:not(.jQuery-panel-page-nav)" ).panel( "open" );
 	});
 
 	// Turn off autocomplete / correct for demos search
-	$( this ).find( ".jqm-search input" ).attr( "autocomplete", "off" ).attr( "autocorrect", "off" );
+	$( this ).find( ".jQuery-search input" ).attr( "autocomplete", "off" ).attr( "autocorrect", "off" );
 
 	// Global search
 	$( ".jqm-search-link" ).on( "click", function() {
-		page.find( ".jqm-search-panel" ).panel( "open" );
+		page.find( ".jQuery-search-panel" ).panel( "open" );
 	});
 
 	// Initalize search panel list and filter also remove collapsibles
-	$( this ).find( ".jqm-search ul.jqm-list" ).html( searchContents ).listview({
+	$( this ).find( ".jQuery-search ul.jQuery-list" ).html( searchContents ).listview({
 		inset: false,
 		theme: null,
 		dividerTheme: null,
@@ -276,7 +276,7 @@ $( document ).on( "pagecreate", ".jqm-demos", function( event ) {
 	}).filterable();
 
 	// Initalize search page list and remove collapsibles
-	$( this ).find( ".jqm-search-results-wrap ul.jqm-list" ).html( searchContents ).listview({
+	$( this ).find( ".jQuery-search-results-wrap ul.jQuery-list" ).html( searchContents ).listview({
 		inset: true,
 		theme: null,
 		dividerTheme: null,
@@ -294,24 +294,24 @@ $( document ).on( "pagecreate", ".jqm-demos", function( event ) {
 	}
 
 	// Search results page get search query string and enter it into filter then trigger keyup to filter
-	if ( $( event.target ).hasClass( "jqm-demos-search-results") ) {
+	if ( $( event.target ).hasClass( "jQuery-demos-search-results") ) {
 		search = $.mobile.path.parseUrl( window.location.href ).search.split( "=" )[ 1 ];
 		setTimeout(function() {
 			e = $.Event( "keyup" );
 			e.which = 65;
-			$( that ).find( ".jqm-content .jqm-search-results-wrap input" ).val( search ).trigger(e).trigger( "change" );
+			$( that ).find( ".jQuery-content .jQuery-search-results-wrap input" ).val( search ).trigger(e).trigger( "change" );
 		}, 0 );
 	}
 });
 
 // Append keywords list to each list item
-$( document ).one( "pagecreate", ".jqm-demos", function( event ) {
-	$( this ).find( ".jqm-search-results-list li, .jqm-search li" ).each(function() {
+$( document ).one( "pagecreate", ".jQuery-demos", function( event ) {
+	$( this ).find( ".jQuery-search-results-list li, .jQuery-search li" ).each(function() {
 		var text = $( this ).attr( "data-filtertext" );
 
 		$( this )
 			.find( "a" )
-			.append( "<span class='jqm-search-results-keywords ui-li-desc'>" + text + "</span>" );
+			.append( "<span class='jQuery-search-results-keywords ui-li-desc'>" + text + "</span>" );
 	});
 });
 
@@ -323,7 +323,7 @@ jQuery.fn.highlight = function( pat ) {
 			var pos = node.data.toUpperCase().indexOf( pat );
 			if ( pos >= 0 ) {
 				var spannode = document.createElement( "span" );
-				spannode.className = "jqm-search-results-highlight";
+				spannode.className = "jQuery-search-results-highlight";
 				var middlebit = node.splitText( pos );
 				var endbit = middlebit.splitText( pat.length );
 				var middleclone = middlebit.cloneNode( true );
@@ -345,7 +345,7 @@ jQuery.fn.highlight = function( pat ) {
 
 // Function to remove highlights in text
 jQuery.fn.removeHighlight = function() {
-	return this.find( "span.jqm-search-results-highlight" ).each(function() {
+	return this.find( "span.jQuery-search-results-highlight" ).each(function() {
 		this.parentNode.firstChild.nodeName;
 		with ( this.parentNode ) {
 			replaceChild( this.firstChild, this );
@@ -567,7 +567,7 @@ $( document ).bind( "pagebeforechange", function( e, data ) {
 	if ( data.options && data.options.role === "popup" && data.options.link ) {
 		sources = data.options.link.jqmData( "sources" );
 		if ( sources ) {
-			popup = $( "<div id='jqm-view-source' class='jqm-view-source' data-role='popup' data-theme='none' data-position-to='window'>" +
+			popup = $( "<div id='jQuery-view-source' class='jQuery-view-source' data-role='popup' data-theme='none' data-position-to='window'>" +
 								"<div data-role='collapsibleset' data-inset='true'></div>" +
 							"</div>" );
 
@@ -590,7 +590,7 @@ function makeButton() {
 		a = document.createElement( "a" ),
 		txt = document.createTextNode( "View Source" );
 
-	a.className = "jqm-view-source-link ui-btn ui-corner-all ui-btn-inline ui-mini";
+	a.className = "jQuery-view-source-link ui-btn ui-corner-all ui-btn-inline ui-mini";
 
 	a.setAttribute( "href", "#popupDemo" );
 	a.setAttribute( "data-rel", "popup" );
@@ -658,7 +658,7 @@ $( document ).on( "pagebeforecreate", "[data-role='page']", function() {
 
 $( document ).on( "pagecreate", function( e ) {
 	// prevent page scroll while scrolling source code
-	$( document ).on( "mousewheel", ".jqm-view-source .ui-collapsible-content", function( event, delta ) {
+	$( document ).on( "mousewheel", ".jQuery-view-source .ui-collapsible-content", function( event, delta ) {
 		if ( delta > 0 && $( this ).scrollTop() === 0 ) {
 			event.preventDefault();
 		} else if ( delta < 0 &&  $( this ).scrollTop() === $( this ).get( 0 ).scrollHeight - $( this ).innerHeight() ) {
@@ -667,11 +667,11 @@ $( document ).on( "pagecreate", function( e ) {
 	});
 
 	// reposition when switching between html / js / css
-	$( e.target ).delegate( ".jqm-view-source .ui-collapsible", "expand", function() {
+	$( e.target ).delegate( ".jQuery-view-source .ui-collapsible", "expand", function() {
 		$( this ).parents( ":mobile-popup" ).popup( "reposition", { positionTo: "window" } );
 	});
 
-	$( e.target ).delegate( ".jqm-view-source", "popupbeforeposition", function() {
+	$( e.target ).delegate( ".jQuery-view-source", "popupbeforeposition", function() {
 		// max height: screen height - tolerance (2*30px) - 42px for each collapsible heading
 		var x = $( this ).find( ".ui-collapsible" ).length,
 			maxHeight = $.mobile.getScreenHeight() - 60 - ( x * 42 );
